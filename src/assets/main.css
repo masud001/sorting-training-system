@@ -1,0 +1,92 @@
+@import './base.css';
+@import 'tailwindcss';
+
+/*
+NOTE: this font size is from theme design system. 
+-------------------------------------------------
+text-xx: 11px; //0.688rem
+text-xx--line-height:16px; //1rem
+
+text-x:12px //0.75rem
+text-x--line-height:16px; //1rem
+
+text-small:13px //0.813rem
+text-small--line-height:18px //1.125rem
+
+text-default:14px //0.875rem
+text-default--line-height:20px //1.25rem
+
+text-title:16px //1rem
+text-title--line-height:24px //1.5rem
+
+text-heading-3:18px //1.125rem
+text-heading-3--line-height:26px //1.625rem
+text-heading-2:24px //1.5rem
+text-heading-2--line-height:32px //2rem
+text-heading-1:32px //2rem
+text-heading-1--line-height:38px //2.375rem
+
+*/
+
+@theme {
+  /* custom Font-size and line-height */
+  --text-xx: 0.688rem;
+  --text-xx--line-height: 1rem;
+  --text-x: 0.75rem;
+  --text-x--line-height: 1rem;
+  --text-small: 0.813rem;
+  --text-small--line-height: 1.125rem;
+  --text-default: 0.875rem;
+  --text-default--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-heading-3: 1.125rem;
+  --text-heading-3--line-height: 1.625rem;
+  --text-heading-2: 1.5rem;
+  --text-heading-2--line-height: 2rem;
+  --text-heading-1: 2rem;
+  --text-heading-1--line-height: 2.375rem;
+  /* font-family  */
+  --font-roboto: var(--theme-font-family);
+
+  /* custom color */
+  --color-primary: var(--primary-color);
+  --color-primary-hover: var(--primary-hover-color);
+  --color-primary-active: var(--primary-active-color);
+
+  --color-secondary: var(--secondary-color);
+  --color-secondary-hover: var(--secondary-hover-color);
+  --color-secondary-active: var(--secondary-active-color);
+
+  --color-error: var(--error-color);
+  --color-error-hover: var(--error-hover-color);
+  --color-error-active: var(--error-active-color);
+
+  --color-default-color: var(--default-color);
+  --color-default-hover: var(--default-hover-color);
+  --color-default-active: var(--default-active-color);
+
+  --color-error-bg: var(--error-bg-color);
+  --color-success: var(--success-color);
+  --color-success-bg: var(--success-bg-color);
+  --color-gray-100: var(--grayscale-100);
+  --color-gray-200: var(--grayscale-200);
+  --color-gray-300: var(--grayscale-300);
+  --color-gray-400: var(--grayscale-400);
+  --color-gray-500: var(--grayscale-500);
+  --color-gray-600: var(--grayscale-600);
+  --color-gray-700: var(--grayscale-700);
+  --color-gray-800: var(--grayscale-800);
+  --color-gray-900: var(--grayscale-900);
+  --color-gray-110: var(--grayscale-110);
+
+  /* space  */
+
+  --spacing-none: 0px;
+  --spacing-s: 5px;
+  --spacing-m: 10px;
+  --spacing-default: 15px;
+  --spacing-l: 20px;
+  --spacing-xl: 25px;
+  --spacing-xxl: 30px;
+}

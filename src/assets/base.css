@@ -1,0 +1,59 @@
+/* custom google font  */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --theme-font-family: 'Roboto', serif;
+
+  --primary-color: #ff8d00;
+  --primary-hover-color: #ffae00;
+  --primary-active-color: #e57f00;
+
+  --secondary-color: var(--grayscale-300);
+  --secondary-hover-color: var(--grayscale-110);
+  --secondary-active-color: #3b3b3b;
+
+  --default-color: #eeeeee;
+  --default-hover-color: var(--grayscale-800);
+  --default-active-color: #d4d4d4;
+
+  --error-color: #b41d1d;
+  --error-hover-color: #db2323;
+  --error-active-color: #9c1919;
+
+  --error-bg-color: #ffe9e9;
+  --success-color: #1db44e;
+  --success-bg-color: #dfffea;
+  --click-color: #1d9db4;
+  --click-bg-color: #dffaff;
+  --grayscale-100: #000000;
+  --grayscale-200: #333333;
+  --grayscale-300: #555555;
+  --grayscale-400: #aaaaaa;
+  --grayscale-500: #cccccc;
+  --grayscale-600: #dddddd;
+  --grayscale-700: #eeeeee;
+  --grayscale-800: #f5f5f5;
+  --grayscale-900: #ffffff;
+  --grayscale-110: #7a7a7a;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  font-size: 16px;
+  font-family: var(--theme-font-family);
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.6;
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variation-settings: 'wdth' 100;
+  background-color: var(--grayscale-800);
+}
