@@ -5,7 +5,7 @@ import TagComponent from '@/lib/TagComponent.vue'
 import { ref } from 'vue'
 import { useStore } from '@/stores/store'
 const store = useStore()
-console.log('people data', store.peopleData.value)
+console.log('people data', store.peopleData)
 const rows = ref([
   {
     email: 'juozas@bybosas.lt',
