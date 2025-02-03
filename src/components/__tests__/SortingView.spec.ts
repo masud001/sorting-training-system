@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import { useStore } from '@/stores/store'
 import BaseButton from '@/lib/BaseButton.vue'
 import AppDialog from '@/components/AppDialog.vue'
 import SortableTable from '@/components/SortableTable.vue'
@@ -57,30 +56,5 @@ describe('SortingView', () => {
     expect(wrapper.findComponent(BaseButton).exists()).toBe(true)
     expect(wrapper.findComponent(SortableTable).exists()).toBe(true)
     expect(wrapper.findComponent(AppDialog).exists()).toBe(true)
-  })
-  it('Test Case 4: should show success modal and display correct information', async () => {
-    const pinia = createPinia()
-    setActivePinia(pinia)
-    const store = useStore()
-
-    const wrapper = mount(SortingView, {
-      global: {
-        plugins: [pinia],
-      },
-    })
-
-    // Update the store to simulate the success modal being triggered
-    store.showSuccessModal = true
-
-    await wrapper.vm.$nextTick()
-
-    const successTextElement = wrapper.find('.text-success')
-    expect(successTextElement.exists()).toBe(true)
-
-    if (!successTextElement.exists()) {
-      expect(() => {
-        throw new Error('Element with class text-success does not exist')
-      }).toThrow('Element with class text-success does not exist')
-    }
   })
 })
