@@ -77,7 +77,6 @@ const buttonClasses = computed(() => {
 
   const disabledClasses = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
   const classes = `${baseClasses} ${variantClasses[props.variant]} ${disabledClasses}`
-  // console.log('class:', classes)
   return classes
 })
 </script>

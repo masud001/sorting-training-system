@@ -63,8 +63,6 @@ describe('SortingView', () => {
     setActivePinia(pinia)
     const store = useStore()
 
-    console.log('Initial store.showSuccessModal:', store.showSuccessModal)
-
     const wrapper = mount(SortingView, {
       global: {
         plugins: [pinia],

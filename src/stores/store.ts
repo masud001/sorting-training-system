@@ -7,7 +7,7 @@ export const useStore = defineStore('store', () => {
   const peoples = ref<Array<PersonData>>([])
   const startTime = ref<number>(0)
   const timeConsumed = ref('00:00:00.000')
-  const stopwatch = ref(0)
+  const stopwatch = ref<ReturnType<typeof setInterval> | null>(null)
   const success = ref(false)
   const showSuccessModal = ref(false)
 
@@ -60,7 +60,10 @@ export const useStore = defineStore('store', () => {
   )
 
   const stopClock = () => {
-    clearInterval(stopwatch.value)
+    if (stopwatch.value) {
+      clearInterval(stopwatch.value)
+      stopwatch.value = null
+    }
   }
 
   const uniqueNoOfPotatoes = () => {
