@@ -10,9 +10,11 @@ export const useStore = defineStore('store', () => {
   const stopwatch = ref<ReturnType<typeof setInterval> | null>(null)
   const success = ref(false)
   const showSuccessModal = ref(false)
+  const successModalShown = ref(false) // To track if the success modal has been shown
 
   const generatePeoples = (num: number) => {
     showSuccessModal.value = false
+    successModalShown.value = false
     success.value = false
     peoples.value = []
     const tagsPool = ['Customers', 'Premium', 'New', 'Oldtimer', 'VIP', 'Regular']
@@ -48,11 +50,13 @@ export const useStore = defineStore('store', () => {
     peoples,
     () => {
       if (
+        !successModalShown.value &&
         peoples.value.map((p) => p.potatoes).toString() ==
-        sortedPeoples.value.map((p) => p.potatoes).toString()
+          sortedPeoples.value.map((p) => p.potatoes).toString()
       ) {
         success.value = true
         showSuccessModal.value = true
+        successModalShown.value = true
         stopClock()
       }
     },
