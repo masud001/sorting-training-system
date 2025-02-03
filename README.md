@@ -2,6 +2,8 @@
 
 The President of Democratic Republic of Potatostan has established a People Sorting Department. To train smart and valuable civil servants for this job, you need to create a **`Sorting Training system`**
 
+live Demo: [live Demo](https://sorting-system.netlify.app/).
+
 ### It needs to work this way:
 
 1. After clicking **`Start sorting`**, show a modal where it's possible to enter a number of people to add to the list.
