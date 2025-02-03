@@ -14,7 +14,9 @@ const onToggle = () => {
         @click="onToggle"
         class="fixed bg-gray-100 top-0 left-0 right-0 bottom-0 opacity-70 inset-0 z-0"
       ></div>
-      <div class="absolute w-1/3 h-1/3 !mx-auto !my-auto inset-0 z-50">
+      <div
+        class="fixed w-11/12 sm:w-8/12 md:w-1/2 lg:w-5/12 xl:w-4/12 h-1/3 !mx-auto !my-auto inset-0 z-50"
+      >
         <div class="max-w-full rounded-[5px] drop-shadow-lg bg-white relative">
           <div>
             <div class="flex justify-between items-center p-default border-b border-gray-600">

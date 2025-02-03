@@ -1,43 +1,113 @@
 import { faker } from '@faker-js/faker'
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { PersonData } from './types'
 
 export const useStore = defineStore('store', () => {
-  const peopleData = ref<Array<PersonData>>([])
-  const generatePeopleData = (num: number = 100) => {
-    peopleData.value = []
-    const tagsPool = ['Customers', 'Premium', 'New', 'Oldtimer', 'VIP', 'Regular']
+  const peoples = ref<Array<PersonData>>([])
+  const startTime = ref<number>(0)
+  const timeConsumed = ref('00:00:00.000')
+  const stopwatch = ref(0)
+  const success = ref(false)
+  const showSuccessModal = ref(false)
 
+  const generatePeoples = (num: number) => {
+    showSuccessModal.value = false
+    success.value = false
+    peoples.value = []
+    const tagsPool = ['Customers', 'Premium', 'New', 'Oldtimer', 'VIP', 'Regular']
     for (let i = 0; i < num; i++) {
       const tagsCount = Math.floor(Math.random() * 4) + 1
       const tags = Array.from(
         { length: tagsCount },
         () => tagsPool[Math.floor(Math.random() * tagsPool.length)],
       )
-
-      peopleData.value.push({
-        email: faker.internet.email(),
-        count: Math.floor(Math.random() * 50) + 1,
+      const eName = faker.person.fullName().slice(0, 10)
+      peoples.value.push({
+        email: faker.internet
+          .email({
+            provider: 'jaya.com',
+            firstName: eName,
+          })
+          .toLowerCase(),
+        potatoes: uniqueNoOfPotatoes(),
         tags: [...new Set(tags)], // Ensures unique tags in the array
-        name: faker.person.fullName(),
-        country: faker.location.country(),
+        name: faker.person.fullName().slice(0, 10),
+        country: faker.location.country().slice(0, 10),
         date: faker.date.recent({ days: 3650 }).toISOString().replace('T', ' ').slice(0, 19),
         isChecked: false,
       })
     }
+    startTime.value = Date.now()
+    stopwatch.value = setInterval(startClock, 10)
   }
 
-  // Watch for changes in peopleData
+  const sortedPeoples = computed(() => [...peoples.value].sort((a, b) => b.potatoes - a.potatoes))
+
   watch(
-    () => peopleData, // Watch the peopleData array
-    (newPeopleData) => {
-      console.log('peopleData has been updated:', newPeopleData)
-      // Perform any action you need when peopleData changes
-      // For example, you can update a local state or trigger a side effect
+    peoples,
+    () => {
+      if (
+        peoples.value.map((p) => p.potatoes).toString() ==
+        sortedPeoples.value.map((p) => p.potatoes).toString()
+      ) {
+        success.value = true
+        showSuccessModal.value = true
+        stopClock()
+      }
     },
-    { deep: true }, // Enable deep watching
+    { deep: true },
   )
 
-  return { generatePeopleData, peopleData }
+  const stopClock = () => {
+    clearInterval(stopwatch.value)
+  }
+
+  const uniqueNoOfPotatoes = () => {
+    const n = faker.number.int({ min: 1, max: 100 })
+    if (peoples.value.some((p) => p.potatoes === n)) {
+      return uniqueNoOfPotatoes()
+    }
+    return n
+  }
+
+  function startClock() {
+    const currentTime = Date.now(),
+      timeElapsed = new Date(currentTime - startTime.value),
+      hour = timeElapsed.getUTCHours(),
+      min = timeElapsed.getUTCMinutes(),
+      sec = timeElapsed.getUTCSeconds(),
+      ms = timeElapsed.getUTCMilliseconds()
+
+    timeConsumed.value =
+      zeroPrefix(hour, 2) +
+      ':' +
+      zeroPrefix(min, 2) +
+      ':' +
+      zeroPrefix(sec, 2) +
+      '.' +
+      zeroPrefix(ms, 3)
+  }
+  function zeroPrefix(num: number, digit: number) {
+    let zero = ''
+    for (let i = 0; i < digit; i++) {
+      zero += '0'
+    }
+    return (zero + num).slice(-digit)
+  }
+
+  const setShowSuccessModal = (value: boolean) => {
+    showSuccessModal.value = value
+  }
+
+  return {
+    generatePeoples,
+    peoples,
+    timeConsumed,
+    stopClock,
+    startTime,
+    success,
+    setShowSuccessModal,
+    showSuccessModal,
+  }
 })

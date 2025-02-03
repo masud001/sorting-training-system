@@ -27,11 +27,11 @@ const props = defineProps({
   },
   href: {
     type: String,
-    default: '',
+    default: null,
   },
   target: {
     type: String as PropType<'_self' | '_blank' | '_parent' | '_top'>,
-    default: '_self',
+    default: '_blank',
   },
   rel: {
     type: String,
@@ -39,7 +39,7 @@ const props = defineProps({
   },
   variant: {
     type: String as PropType<'primary' | 'secondary' | 'error' | 'default' | 'link'>,
-    default: 'default',
+    default: 'primary',
   },
   disabled: {
     type: Boolean,
@@ -65,7 +65,7 @@ const handleClick = (event: MouseEvent) => {
 // Dynamically compute button classes based on variant and state
 const buttonClasses = computed(() => {
   const baseClasses =
-    'px-[36px] py-[15px] rounded-[5px] shadow-xs !font-bold focus:outline-none transition-all delay-100 capitalize cursor-pointer'
+    'px-[15px] py-[10px] lg:px-[36px] lg:py-[15px] text-small sm:text-base rounded-[5px] shadow-xs !font-bold focus:outline-none transition-all delay-100 capitalize cursor-pointer'
 
   const variantClasses = {
     primary: 'bg-primary text-gray-900 hover:bg-primary-hover active:bg-primary-active',
@@ -76,8 +76,9 @@ const buttonClasses = computed(() => {
   }
 
   const disabledClasses = props.disabled ? 'opacity-50 cursor-not-allowed' : ''
-
-  return `${baseClasses} ${variantClasses[props.variant]} ${disabledClasses}`
+  const classes = `${baseClasses} ${variantClasses[props.variant]} ${disabledClasses}`
+  // console.log('class:', classes)
+  return classes
 })
 </script>
 

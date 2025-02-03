@@ -40,5 +40,3 @@ const remainingTagsCount = computed(() => props.tags.length - 2)
 // Compute the remaining tags (all tags beyond the first two)
 const remainingTags = computed(() => props.tags.slice(2))
 </script>
-
-<style scoped></style>

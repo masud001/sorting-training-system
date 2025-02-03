@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, defineExpose } from 'vue'
 
 // Props
 const props = defineProps({
@@ -71,6 +71,11 @@ const emit = defineEmits(['update:modelValue'])
 const inputValue = ref(String(props.modelValue)) // Convert initial value to string
 const errorMessage = ref('')
 const successMessage = ref('')
+
+defineExpose({
+  errorMessage,
+  successMessage,
+})
 
 // Validation function
 const validateInput = () => {

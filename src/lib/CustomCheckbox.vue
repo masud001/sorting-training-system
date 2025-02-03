@@ -45,15 +45,17 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  rowData: {
+    type: Object,
+    default: () => ({}),
+  },
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'row-click'])
 
 const toggle = () => {
-  emit('update:modelValue', !props.modelValue)
+  const newValue = !props.modelValue
+  emit('update:modelValue', newValue)
+  emit('row-click', props.rowData, newValue)
 }
 </script>
-
-<style scoped>
-/* Add any custom styles if needed */
-</style>

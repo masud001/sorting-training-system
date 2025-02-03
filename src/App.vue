@@ -3,7 +3,10 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="main-container w-6xl px-default py-xxl">
+  <div
+    aria-label="main-container"
+    class="main-container w-full sm:w-lg md:w-2xl lg:w-4xl xl:w-6xl 2xl:w-7xl px-default py-xxl"
+  >
     <div class="w-full">
       <RouterView />
     </div>

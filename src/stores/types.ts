@@ -1,6 +1,6 @@
 export type PersonData = {
   email: string
-  count: number
+  potatoes: number
   tags: string[]
   name: string
   country: string
