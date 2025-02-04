@@ -19,7 +19,6 @@
 <script setup lang="ts">
 import { computed, defineProps, type PropType } from 'vue'
 
-// Props declaration
 const props = defineProps({
   type: {
     type: String as PropType<'button' | 'submit' | 'reset'>,
@@ -51,18 +50,22 @@ const props = defineProps({
   },
 })
 
-// Handle click event
+/**
+ * Handles the button click event.
+ * If the button is disabled, the event is prevented from propagating.
+ * If an onClick function is provided, it is called with the event as an argument.
+ * @param {MouseEvent} event - The click event.
+ */
 const handleClick = (event: MouseEvent) => {
   if (props.disabled) {
-    event.preventDefault() // Prevent actions if disabled
+    event.preventDefault()
     return
   }
   if (props.onClick) {
-    props.onClick(event) // Execute provided onClick function
+    props.onClick(event)
   }
 }
 
-// Dynamically compute button classes based on variant and state
 const buttonClasses = computed(() => {
   const baseClasses =
     'px-[15px] py-[10px] lg:px-[36px] lg:py-[15px] text-small sm:text-base rounded-[5px] shadow-xs !font-bold focus:outline-none transition-all delay-100 capitalize cursor-pointer'
@@ -80,7 +83,3 @@ const buttonClasses = computed(() => {
   return classes
 })
 </script>
-
-<style scoped>
-/* Add any additional styles if needed */
-</style>

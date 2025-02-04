@@ -26,7 +26,7 @@ import { computed } from 'vue'
 // Define props with TypeScript support
 const props = defineProps({
   tags: {
-    type: Array as () => string[], // Specify the type as an array of strings
+    type: Array as () => string[],
     required: true,
   },
 })

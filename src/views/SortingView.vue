@@ -13,31 +13,48 @@ defineExpose({ open })
 const numberValue = ref(0)
 const isInvalid = ref(true)
 
+/**
+ * Handles the click event of the BaseButton component (Start sorting! button).
+ * When the button is clicked, this function toggles the open property of the
+ * AppDialog component and resets the numberValue property to 0.
+ */
 const handleButtonClick = () => {
   open.value = !open.value
   numberValue.value = 0
 }
 
+/**
+ * Handles the Start button click event when the user enters a valid number of people
+ * and clicks the Start button. This function gets the current value of the input field,
+ * closes the AppDialog (adds people modal), and calls the generatePeoples method of
+ * the store to generate the people data and start the timer.
+ */
 const handleButtonStart = () => {
   const value = numberValue.value
   open.value = false
   store.generatePeoples(value)
 }
-// Validate input value
+
+/**
+ * Validates the input value to ensure it's within the acceptable range.
+ * If the value is between 20 and 100 (inclusive), it enables the Start button
+ * by setting isInvalid to false. Otherwise, it disables the Start button by
+ * setting isInvalid to true.
+ *
+ * @param value - The number to validate.
+ */
 const validateInput = (value: number) => {
   if (value >= 20 && value <= 100) {
-    isInvalid.value = false // Enable the Start button
+    isInvalid.value = false
   } else {
-    isInvalid.value = true // Disable the Start button
+    isInvalid.value = true
   }
 }
 
-// Watch for changes in numberValue
 watch(numberValue, (newValue) => {
   validateInput(newValue)
 })
 
-// Watch for sorting completion
 watch(
   () => store.showSuccessModal,
   (newValue) => {

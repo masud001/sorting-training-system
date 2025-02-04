@@ -12,10 +12,14 @@ const drag = ref(false)
 defineExpose({
   drag,
 })
+/**
+ * Handles row click event in the SortableTable component
+ * @param {PersonData} rowData - The data of the row that was clicked
+ * @param {boolean} isChecked - Whether the checkbox is checked
+ */
 const handleRowClick = (rowData: PersonData, isChecked: boolean) => {
   console.log('Row Data:', rowData)
   console.log('Checkbox Checked:', isChecked)
-  // You can now use the rowData and isChecked values as needed
 }
 </script>
 

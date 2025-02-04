@@ -12,6 +12,11 @@ export const useStore = defineStore('store', () => {
   const showSuccessModal = ref(false)
   const successModalShown = ref(false) // To track if the success modal has been shown
 
+  /**
+   * Generates an array of random people data
+   * @param {number} num The number of people to generate
+   * @returns {void}
+   */
   const generatePeoples = (num: number) => {
     showSuccessModal.value = false
     successModalShown.value = false
@@ -63,6 +68,10 @@ export const useStore = defineStore('store', () => {
     { deep: true },
   )
 
+  /**
+   * Stops the stopwatch and resets the stopwatch variable to null.
+   * @returns {void}
+   */
   const stopClock = () => {
     if (stopwatch.value) {
       clearInterval(stopwatch.value)
@@ -70,6 +79,12 @@ export const useStore = defineStore('store', () => {
     }
   }
 
+  /**
+   * Generates a unique random number of potatoes for a person.
+   * The function recursively calls itself if the generated number
+   * already exists in the `peoples` array.
+   * @returns {number} A unique number of potatoes.
+   */
   const uniqueNoOfPotatoes = () => {
     const n = faker.number.int({ min: 1, max: 100 })
     if (peoples.value.some((p) => p.potatoes === n)) {
@@ -78,6 +93,11 @@ export const useStore = defineStore('store', () => {
     return n
   }
 
+  /**
+   * Updates the timeConsumed value with the elapsed time since the start time.
+   * The elapsed time is formatted as 'HH:MM:SS.mmm'.
+   * This function is called periodically to update the display of elapsed time.
+   */
   function startClock() {
     const currentTime = Date.now(),
       timeElapsed = new Date(currentTime - startTime.value),
@@ -95,6 +115,13 @@ export const useStore = defineStore('store', () => {
       '.' +
       zeroPrefix(ms, 3)
   }
+  /**
+   * Pads the given number with leading zeros to ensure it has at least the specified number of digits.
+   *
+   * @param {number} num - The number to be padded with leading zeros.
+   * @param {number} digit - The total number of digits the result should have, including the original number.
+   * @returns {string} The number as a string, padded with leading zeros if necessary.
+   */
   function zeroPrefix(num: number, digit: number) {
     let zero = ''
     for (let i = 0; i < digit; i++) {
@@ -103,6 +130,11 @@ export const useStore = defineStore('store', () => {
     return (zero + num).slice(-digit)
   }
 
+  /**
+   * Updates the showSuccessModal state.
+   * @param {boolean} value - The new value for showSuccessModal.
+   * @returns {void}
+   */
   const setShowSuccessModal = (value: boolean) => {
     showSuccessModal.value = value
   }

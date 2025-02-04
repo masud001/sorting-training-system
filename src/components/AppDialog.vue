@@ -2,6 +2,9 @@
 const value = defineModel({ type: Boolean, default: false, required: true })
 const { title } = defineProps<{ title: string }>()
 import crosIcon from '@/assets/icons/cros-icon.svg'
+/**
+ * Toggles the boolean value of the `value` ref, switching between true and false.
+ */
 const onToggle = () => {
   value.value = !value.value
 }

@@ -53,6 +53,10 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'row-click'])
 
+/**
+ * Toggle the checkbox state, emitting an update to the modelValue and
+ * the row-click event with the new value and the row data.
+ */
 const toggle = () => {
   const newValue = !props.modelValue
   emit('update:modelValue', newValue)

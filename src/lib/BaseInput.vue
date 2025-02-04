@@ -64,11 +64,9 @@ const props = defineProps({
   },
 })
 
-// Emits
 const emit = defineEmits(['update:modelValue'])
 
-// Reactive state
-const inputValue = ref(String(props.modelValue)) // Convert initial value to string
+const inputValue = ref(String(props.modelValue))
 const errorMessage = ref('')
 const successMessage = ref('')
 
@@ -77,11 +75,22 @@ defineExpose({
   successMessage,
 })
 
-// Validation function
+/**
+ * Validates the current input value based on the specified type and range.
+ *
+ * - For 'number' type inputs:
+ *   - Checks if the input is a valid number. If not, sets an error message and emits NaN.
+ *   - Verifies if the number is within the defined min and max range. If not, sets an error message.
+ *   - If valid, clears the error message and sets a success message.
+ *   - Emits the numeric value in all cases.
+ *
+ * - For other input types:
+ *   - Emits the raw input value without validation.
+ *   - Clears any existing error or success messages.
+ */
 const validateInput = () => {
   const value = inputValue.value
 
-  // Handle number validation if type is 'number'
   if (props.type === 'number') {
     const numericValue = parseFloat(value)
 
@@ -106,17 +115,16 @@ const validateInput = () => {
   }
 }
 
-// Dynamic input classes
 const inputClasses = computed(() => {
-  let borderColor = 'border-gray-600' // Default border color
-  let focusRingColor = 'focus:ring-primary' // Default focus ring color
+  let borderColor = 'border-gray-600'
+  let focusRingColor = 'focus:ring-primary'
 
   if (errorMessage.value) {
-    borderColor = 'border-error' // Error border color
-    focusRingColor = 'focus:ring-error-active' // Error focus ring color
+    borderColor = 'border-error'
+    focusRingColor = 'focus:ring-error-active'
   } else if (successMessage.value) {
-    borderColor = 'border-success' // Success border color
-    focusRingColor = 'focus:ring-success' // Success focus ring color
+    borderColor = 'border-success'
+    focusRingColor = 'focus:ring-success'
   }
   return [
     'px-4',
@@ -130,11 +138,10 @@ const inputClasses = computed(() => {
   ]
 })
 
-// Watch for changes in modelValue prop
 watch(
   () => props.modelValue,
   (newValue) => {
-    inputValue.value = String(newValue) // Convert new value to string
+    inputValue.value = String(newValue)
     validateInput()
   },
 )
