@@ -57,3 +57,11 @@ body {
   font-variation-settings: 'wdth' 100;
   background-color: var(--grayscale-800);
 }
+.table-class {
+  -webkit-overflow-scrolling: touch; /* Improves smooth scrolling on iOS */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+table {
+  touch-action: pan-x pan-y;
+}

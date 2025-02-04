@@ -29,7 +29,7 @@ const handleRowClick = (rowData: PersonData, isChecked: boolean) => {
       }}
     </p>
   </div>
-  <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
+  <div class="table-class w-full overflow-x-scroll xl:overflow-x-hidden">
     <table class="table-auto !w-full min-w-6xl xl:min-w-full" :disabled="store.success">
       <thead>
         <tr class="text-left">
@@ -90,6 +90,9 @@ const handleRowClick = (rowData: PersonData, isChecked: boolean) => {
           tag="tbody"
           @start="drag = true"
           @end="drag = false"
+          :touchStartThreshold="10"
+          :delay="200"
+          :delayOnTouchOnly="true"
         >
           <template #item="{ element, index }">
             <tr class="text-left hover:bg-default-hover transition-colors delay-100">
