@@ -65,3 +65,6 @@ body {
 table {
   touch-action: pan-x pan-y;
 }
+table tbody tr[data-draggable='true']:hover {
+  background-color: var(--default-hover-color) !important;
+}

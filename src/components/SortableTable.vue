@@ -95,7 +95,10 @@ const handleRowClick = (rowData: PersonData, isChecked: boolean) => {
           :delayOnTouchOnly="true"
         >
           <template #item="{ element, index }">
-            <tr class="text-left hover:bg-default-hover transition-colors delay-100">
+            <tr
+              :class="{ '!bg-default-hover': element.isChecked }"
+              class="text-left hover:bg-default-hover transition-colors delay-100"
+            >
               <td
                 class="border-b border-r border-gray-600 text-gray-100 text-default px-l !py-[14px] flex justify-between items-center"
               >
@@ -108,7 +111,7 @@ const handleRowClick = (rowData: PersonData, isChecked: boolean) => {
                     @row-click="handleRowClick"
                   />
                 </span>
-                <span><img :src="arrowIcon" alt="arrow-icon" /></span>
+                <span class="cursor-pointer"><img :src="arrowIcon" alt="arrow-icon" /></span>
               </td>
               <td class="border-b border-gray-600 text-gray-100 text-default px-l py-[13.5px]">
                 {{ element.potatoes }}
